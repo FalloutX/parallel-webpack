@@ -96,7 +96,7 @@ module.exports = function(configuratorFileName, options, index, expectedConfigLe
                 if(watcher) {
                     watcher.close(done);
                 }
-                done({
+                done(null, {
                     message: chalk.red('[WEBPACK]') + ' Forcefully shut down ' + chalk.yellow(getAppName(webpackConfig))
                 });
                 process.exit(0);
@@ -117,7 +117,7 @@ module.exports = function(configuratorFileName, options, index, expectedConfigLe
                         console.log(message);
                     } else {
                         process.removeListener('SIGINT', shutdownCallback);
-                        return done({
+                        return done(null, {
                             message: message,
                             stats: JSON.stringify(stats.toJson(outputOptions), null, 2)
                         });
